@@ -1,11 +1,20 @@
 from typing import Optional, List, Union
+from enum import Enum
 from pydantic import BaseSettings, validator, AnyHttpUrl
 
 
+class AppEnvironments(str, Enum):
+    dev = "dev"
+    test = "test"
+
+
 class Settings(BaseSettings):
+    APP_ENVIRONMENT: AppEnvironments
+
     PROJECT_NAME: str
 
     DB_URI: str
+    TEST_DB_URI: str
 
     API_V1_STR: str = "/api/v1"
 
@@ -18,8 +27,9 @@ class Settings(BaseSettings):
         elif isinstance(v, (list, str)):
             return v
         raise ValueError(v)
-    
+
     class Config:
         case_sensitive = True
+
 
 settings = Settings()

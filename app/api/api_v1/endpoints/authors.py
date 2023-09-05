@@ -27,7 +27,7 @@ async def create_author(author_in: AuthorCreate):
     return await crud.author.create(obj_in=author_in)
 
 
-@router.post("/{author_id}", response_model=Author)
+@router.patch("/{author_id}", response_model=Author)
 async def update_author(author_id: int, author_in: AuthorUpdate):
     return await crud.author.update(id=author_id, obj_in=author_in)
 

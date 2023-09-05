@@ -196,3 +196,4 @@ pyrightconfig.json
 
 
 /app/database.db
+/test_database.db
