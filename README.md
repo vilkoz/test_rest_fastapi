@@ -20,3 +20,9 @@ docker compose up --build -d
 
 Open in browser `http://localhost:8080/docs`
 
+
+Run tests:
+```
+docker compose run -it --rm tests
+```
+

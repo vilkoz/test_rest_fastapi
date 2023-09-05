@@ -8,5 +8,14 @@ services:
     ports:
       - 8080:80
 
+  tests:
+    build: .
+    env_file: app/.env.dist
+    environment:
+      - APP_ENVIRONMENT=test
+    profiles:
+      - do_not_start
+    command: pytest
+
 volumes:
   test_rest_fastapi_volume:
