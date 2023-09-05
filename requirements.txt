@@ -13,4 +13,4 @@ SQLAlchemy==1.4.49
 sqlalchemy2-stubs==0.0.2a35
 starlette==0.27.0
 typing_extensions==4.7.1
-uvicorn==0.23.2
+uvicorn==0.22.0

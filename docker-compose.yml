@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  backend:
+    build: .
+    volumes:
+      - "test_rest_fastapi_volume:/app/database/"
+    env_file: app/.env.dist
+    ports:
+      - 8080:80
+
+volumes:
+  test_rest_fastapi_volume:
