@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.api_v1.endpoints import authors, books
+from api.api_v1.endpoints import authors, books
 
 api_router = APIRouter()
 api_router.include_router(authors.router, prefix="/authors")

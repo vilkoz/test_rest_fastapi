@@ -7,8 +7,10 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 
-
 from core.config import settings
+from db.init_db import init_db_tables
+from db.session import database
+from api.api_v1.api import api_router
 
 
 app = FastAPI(
@@ -32,9 +34,31 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content=jsonable_encoder({"error": exc.errors()}),
     )
 
+
 @app.exception_handler(StarletteHTTPException)
 async def http_excepition_handler(request: Request, exc: StarletteHTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content=jsonable_encoder({"error": str(exc.detail)}),
     )
+
+
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
+
+app.include_router(api_router, prefix=settings.API_V1_STR)
+
+
+def main():
+    init_db_tables()
+
+
+if __name__ == "__main__":
+    main()
