@@ -16,7 +16,7 @@
             "cwd": "${workspaceFolder}/app",
             "envFile": "${workspaceFolder}/app/.env",
             "jinja": true,
-            "justMyCode": true
+            "justMyCode": false
         }
     ]
 }
